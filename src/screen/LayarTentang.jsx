@@ -7,14 +7,13 @@ export default function LayarTentang() {
   return (
     <View style={styles.container}>
       <Image source={GmbrLogo} style={styles.imglogo}/>
-      <Text style={styles.title}>Welcome to Smart ITC</Text>
-      <Text style={styles.subtitle}>Information, Training, and Courses in Indonesia</Text>
+      <Text style={styles.title}>Selamat Datang di Smart ITC</Text>
+      <Text style={styles.subtitle}>Informasi Pelatihan dan Kursus Lengkap di Indonesia</Text>
       <Text style={styles.description}>
-        Smart ITC is your gateway to a world of information, high-quality training programs,
-        and comprehensive courses in Indonesia. We are committed to providing top-notch
-        educational resources to empower individuals and organizations.
+        Smart ITC adalah pintu gerbang Anda ke dunia informasi, program pelatihan berkualitas tinggi,
+        dan kursus komprehensif di Indonesia. 
       </Text>
-      <Text style={styles.footer}>Empowering People. Transforming Futures.</Text>
+      <Text style={styles.footer}>Semangat Mengembangkan Kemampuan Anda</Text>
     </View>
   );
 }
