@@ -1,12 +1,25 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { hitam, biru } from '../constants/warna';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { hitam, biru, abumuda } from '../constants/warna';
 import IkonF from 'react-native-vector-icons/FontAwesome5';
 import IkonMc from 'react-native-vector-icons/MaterialCommunityIcons';
 import IkonM from 'react-native-vector-icons/MaterialIcons';
 
 const LayarKontak = () => {
+  const [nama, setNama] = useState('');
+  const [email, setEmail] = useState('');
+  const [pesan, setPesan] = useState('');
+
+  const kirimPesan = () => {
+    console.log('Nama:', nama);
+    console.log('Email:', email);
+    console.log('Pesan:', pesan);
+    setNama('');
+    setEmail('');
+    setPesan('');
+  };
   return (
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
     <View style={styles.container}>
       <Text style={styles.title}>Kontak Kami</Text>
       <View style={styles.contactContainer}>
@@ -83,11 +96,44 @@ const LayarKontak = () => {
           </View>
         </View>
       </View>
+      <View style={styles.messageContainer}>
+        <Text style={styles.messageTitle}>Kirim Pesan</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Masukkan Nama Anda"
+          placeholderTextColor= "#999"
+          value={nama}
+          onChangeText={text => setNama(text)}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Masukkan Email Anda"
+          placeholderTextColor= "#999"
+          value={email}
+          onChangeText={text => setEmail(text)}
+        />
+        <TextInput
+          style={[styles.input, styles.pesanInput]}
+          placeholder="Masukkan Pesan Anda"
+          placeholderTextColor= "#999"
+          multiline={true}
+          value={pesan}
+          onChangeText={text => setPesan(text)}
+        />
+        <TouchableOpacity style={styles.kirimButton} onPress={kirimPesan}>
+          <Text style={styles.kirimButtonText}>Kirim</Text>
+        </TouchableOpacity>
+      </View>
     </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'space-between',
+  },
   container: {
     flex: 1,
     backgroundColor: '#FFF',
@@ -105,7 +151,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ddd',
     borderRadius: 8,
-    
+    padding: 10,
+    marginBottom: 20,
   },
   contactInfo: {
     flexDirection: 'row',
@@ -129,6 +176,40 @@ const styles = StyleSheet.create({
     color: '#666',
     fontSize: 16,
   },
+  messageContainer: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    padding: 10,
+  },
+  messageTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: hitam,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    padding: 10,
+    marginBottom: 10,
+  },
+  pesanInput: {
+    height: 100, // Sesuaikan tinggi input pesan
+  },
+  kirimButton: {
+    backgroundColor: biru,
+    borderRadius: 8,
+    padding: 12,
+    alignItems: 'center',
+  },
+  kirimButtonText: {
+    color: '#FFF',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
 });
+
 
 export default LayarKontak;

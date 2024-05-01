@@ -1,27 +1,27 @@
 import React from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { hitam, biru, border } from "../constants/warna";
-import { Dicoding, LogoCodePolitan, LogoFi, LogoMyskill, LogoSkilvull } from "../constants/gambar"; 
+import { Dbs, Dicoding, LogoCodePolitan, LogoFi, LogoMyskill, LogoSkilvull } from "../constants/gambar"; 
 import IkonM from "react-native-vector-icons/MaterialIcons";
 import LihatSemua from "../screen/LihatSemua";
 
 const training = [
   { image: LogoCodePolitan, title: "CodePolitan", description: ""},
-  { image: LogoFi, title: "Family Institute", description: ""},
-  { image: LogoMyskill, title: "Training", description: ""},
-  { image: LogoSkilvull, title: "Training", description: ""},
+  { image: Dicoding, title: "Dicoding", description: ""},
+  { image: LogoMyskill, title: "MySkill", description: ""},
+  { image: LogoSkilvull, title: "SkilVull", description: ""},
 ];
 
 const course = [
-    { image: Dicoding, title: "Course", description: ""},
-    { image: LogoFi, title: "Course", description: ""},
-    { image: LogoMyskill, title: "Course", description: ""},
+    { image: LogoFi, title: "Family Institute", description: ""},
+    { image: Dbs, title: "DBS", description: ""},
     { image: LogoSkilvull, title: "Course", description: ""},
+    { image: LogoMyskill, title: "Course", description: ""},
 ];
 
 export default function DaftarPelsus({ title, navigation }) {
 
-  const data = title === 'Training' ? training : course;
+  const data = title === 'Training (Pelatihan)' ? training : course;
   
   const navigateToDetail = (detail) => {
       navigation.navigate('DetailPelsus', { detail });
@@ -30,11 +30,12 @@ export default function DaftarPelsus({ title, navigation }) {
   return (
     <>
       <View style={[styles.flexRowCenter, { justifyContent: 'space-between', paddingHorizontal: 24 }]}>
-        <Text style={{ color: hitam, fontSize: 24, fontWeight: '800'}}>{title}</Text>
+        <Text style={[{ color: hitam, fontSize: 24, fontWeight: '800' }, styles.titleText]}>{title}</Text>
         <TouchableOpacity onPress={() => navigation.navigate (LihatSemua)}>
-          <Text style={{ color: biru, fontSize: 16, fontWeight: '600', marginLeft: 200 }}>Lihat Semua</Text>
+         <Text style={{ color: biru, fontSize: 16, fontWeight: '600'}}>Lihat Semua</Text>
         </TouchableOpacity>
       </View>
+
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       {data.map((detail, index) => (
@@ -67,4 +68,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
+  titleText: {
+    flex: 1,
+    marginRight: 'auto',
+  },
+  
 });

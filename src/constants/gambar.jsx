@@ -7,7 +7,7 @@ import LogoCodePolitan from '../assets/gambar/LogoCodePolitan.png';
 import LogoFi from '../assets/gambar/LogoFi.png';
 import LogoMyskill from '../assets/gambar/LogoMyskill.jpg';
 import LogoSkilvull from '../assets/gambar/LogoSkilvull.jpg';
-import Dicoding from '../assets/gambar/dicoding-logo.png';
+import Dicoding from '../assets/gambar/dicoding-g.png';
 import Dbs from '../assets/gambar/DBSFoundation.jpg';
 
 export {BannerSitc, BannerSitc2, BannerSitc3, BannerSitc4, BannerSitc5, LogoCodePolitan, LogoFi, LogoMyskill, LogoSkilvull, Dicoding, Dbs};

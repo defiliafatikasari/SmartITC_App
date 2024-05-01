@@ -17,10 +17,8 @@ const LayarBeranda = ({ navigation }) => {
       <Banner />
 
       <View style={{height: 20}}/>
-      <DaftarPelsus title={'Training'} navigation={navigation} />
-      <DaftarPelsus title={'Course'}navigation={navigation}/>
-      {/* <View style={{height: 20}}/> */}
-      {/* <Text style={{ color: biru, fontSize: 16, fontWeight: '600' }}>Lihat Semua</Text> */}
+      <DaftarPelsus title={'Training (Pelatihan)'} navigation={navigation} />
+      <DaftarPelsus title={'Courses (Kursus)'}navigation={navigation}/>
     </View>
   );
 };
