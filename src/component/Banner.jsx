@@ -6,7 +6,7 @@ import { BannerSitc, BannerSitc2, BannerSitc3, BannerSitc4, BannerSitc5 } from '
 const { width: SCREEN_WIDTH } = Dimensions.get('screen');
 
 export default function Banner() {
-  const pages = [BannerSitc, BannerSitc2, BannerSitc3, BannerSitc5];
+  const pages = [BannerSitc, BannerSitc2, BannerSitc3, BannerSitc4, BannerSitc5];
   const [currentPage, setCurrentPage] = useState(0);
 
   const onScroll = (event) => {
