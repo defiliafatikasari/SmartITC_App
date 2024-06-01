@@ -22,6 +22,7 @@ import LayarBlog from './screen/LayarBlog';
 import LayarKontak from './screen/LayarKontak';
 import DetailPelsus from './screen/DetailPelsus';
 import LihatSemua from './screen/LihatSemua';
+import Favorit from './screen/Favorit';
 // Pelsus (Pelatihan Kursus)
 
 const Stack = createNativeStackNavigator();
@@ -59,6 +60,21 @@ const MenuBawah = () => {
           tabBarIcon: ({ color, focused }) => (
             <IkonF 
               name="exclamation-circle" 
+              color={focused ? biru : hitam} 
+              size={20} 
+            />
+          )
+        }}
+      />
+      <Tabs.Screen 
+        name='Favorit' 
+        component={Favorit} 
+        options={{ 
+          headerShown: false,
+          tabBarLabel: 'Favorit',
+          tabBarIcon: ({ color, focused }) => (
+            <IkonM 
+              name="favorite" 
               color={focused ? biru : hitam} 
               size={20} 
             />
