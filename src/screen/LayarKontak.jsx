@@ -37,22 +37,22 @@ const LayarKontak = () => {
               <Text style={styles.text}>Jalan Jalmak Gang.VII, Pamekasan, Jawa Timur</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.contactInfo} onPress={() => handleLinkPress('https://wa.me/6292197569330')}>
+          <TouchableOpacity style={styles.contactInfo} onPress={() => handleLinkPress('https://wa.me/6282197569330')}>
             <View style={styles.iconContainer}>
               <IkonMc name="whatsapp" color={biru} size={20} />
             </View>
             <View style={styles.textContainer}>
               <Text style={styles.label}>WhatsApp:</Text>
-              <Text style={styles.text}>+6292197569330</Text>
+              <Text style={styles.text}>+6282197569330</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.contactInfo} onPress={() => handleLinkPress('tel:+6297862771867')}>
+          <TouchableOpacity style={styles.contactInfo} onPress={() => handleLinkPress('tel:+6287862771867')}>
             <View style={styles.iconContainer}>
               <IkonMc name="phone" color={biru} size={20} />
             </View>
             <View style={styles.textContainer}>
               <Text style={styles.label}>Phone:</Text>
-              <Text style={styles.text}>+6297862771867</Text>
+              <Text style={styles.text}>+6287862771867</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={styles.contactInfo} onPress={() => handleLinkPress('mailto:smartITC09@gmail.com')}>
