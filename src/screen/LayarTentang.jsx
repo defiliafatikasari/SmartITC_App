@@ -1,9 +1,23 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity, Linking } from "react-native";
 import { biru, hitam } from "../constants/warna";
 import GmbrLogo from '../assets/gambar/LogoSitc.png';
 
+import MediaPartner1 from '../assets/gambar/LogoUIMPamekasan.png';
+import MediaPartner2 from '../assets/gambar/dicoding-logo.png';
+import MediaPartner3 from '../assets/gambar/DBSFoundation.jpg';
+
+const mediaPartners = [
+  { name: "Universitas Islam Madura", link: "https://www.uim.ac.id/" },
+  { name: "Dicoding", link: "https://www.dicoding.com/" },
+  { name: "DBS Foundation", link: "https://www.dbs.com/dbsfoundation/" },
+];
+
 export default function LayarTentang() {
+  const openMediaPartnerLink = (link) => {
+    Linking.openURL(link);
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.content}>
@@ -41,6 +55,23 @@ export default function LayarTentang() {
           <Text style={styles.description}>
             <Text style={styles.point}>5.</Text> Mengembangkan komunitas belajar yang aktif dan berdaya guna melalui forum diskusi, webinar, dan pertemuan offline, serta berkomitmen pada penyediaan informasi yang akurat, objektif, dan terpercaya untuk membantu individu membuat keputusan yang cerdas dalam memilih program pelatihan.
           </Text>
+        </View>
+        <View style={styles.mediaPartnerContainer}>
+          <Text style={styles.mediaPartnerTitle}>Media Partner</Text>
+          <View style={styles.mediaPartnerRow}>
+            {mediaPartners.map((partner, index) => (
+              <TouchableOpacity
+                key={index}
+                onPress={() => openMediaPartnerLink(partner.link)}
+              >
+                <Image
+                  source={index === 0 ? MediaPartner1 : index === 1 ? MediaPartner2 : MediaPartner3}
+                  style={styles.mediaPartnerImage}
+                />
+              </TouchableOpacity>
+            
+            ))}
+          </View>
         </View>
       </View>
     </ScrollView>
@@ -102,5 +133,28 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  mediaPartnerContainer: {
+    marginTop: 20,
+    paddingVertical: 10,
+    borderTopWidth: 1,
+    borderTopColor: hitam,
+  },
+  mediaPartnerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: hitam,
+    textAlign: 'center',
+  },
+  mediaPartnerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 10,
+  },
+  mediaPartnerImage: {
+    width: 100,
+    height: 40,
+    resizeMode: 'contain',
   },
 });

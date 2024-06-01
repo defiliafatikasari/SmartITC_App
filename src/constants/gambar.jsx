@@ -9,5 +9,7 @@ import LogoMyskill from '../assets/gambar/LogoMyskill.jpg';
 import LogoSkilvull from '../assets/gambar/LogoSkilvull.jpg';
 import Dicoding from '../assets/gambar/dicoding-g.png';
 import Dbs from '../assets/gambar/DBSFoundation.jpg';
+import Mii from '../assets/gambar/LogoMii.png';
+import Cn from '../assets/gambar/LogoCourseNet.png';
 
-export {BannerSitc, BannerSitc2, BannerSitc3, BannerSitc4, BannerSitc5, LogoCodePolitan, LogoFi, LogoMyskill, LogoSkilvull, Dicoding, Dbs};
+export {BannerSitc, BannerSitc2, BannerSitc3, BannerSitc4, BannerSitc5, LogoCodePolitan, LogoFi, LogoMyskill, LogoSkilvull, Dicoding, Dbs, Mii, Cn };

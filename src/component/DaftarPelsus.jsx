@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { hitam, biru, border } from "../constants/warna";
-import { Dbs, Dicoding, LogoCodePolitan, LogoFi, LogoMyskill, LogoSkilvull } from "../constants/gambar"; 
+import { Cn, Dbs, Dicoding, LogoCodePolitan, LogoFi, LogoMyskill, LogoSkilvull, Mii } from "../constants/gambar"; 
 import IkonM from "react-native-vector-icons/MaterialIcons";
 import LihatSemua from "../screen/LihatSemua";
 
@@ -9,14 +9,14 @@ const training = [
   { image: LogoCodePolitan, title: "CodePolitan", description: ""},
   { image: Dicoding, title: "Dicoding", description: ""},
   { image: LogoMyskill, title: "MySkill", description: ""},
-  { image: LogoSkilvull, title: "SkilVull", description: ""},
+  { image: LogoSkilvull, title: "SkilVul", description: ""},
 ];
 
 const course = [
     { image: LogoFi, title: "Family Institute", description: ""},
     { image: Dbs, title: "DBS", description: ""},
-    { image: LogoSkilvull, title: "Course", description: ""},
-    { image: LogoMyskill, title: "Course", description: ""},
+    { image: Mii, title: "Mitra Informatika Indonesia", description: ""},
+    { image: Cn, title: "Course-Net", description: ""},
 ];
 
 export default function DaftarPelsus({ title, navigation }) {

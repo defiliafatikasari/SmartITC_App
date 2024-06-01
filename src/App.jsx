@@ -22,7 +22,6 @@ import LayarBlog from './screen/LayarBlog';
 import LayarKontak from './screen/LayarKontak';
 import DetailPelsus from './screen/DetailPelsus';
 import LihatSemua from './screen/LihatSemua';
-import DetailBlog from './screen/DetailBlog';
 // Pelsus (Pelatihan Kursus)
 
 const Stack = createNativeStackNavigator();
@@ -59,7 +58,7 @@ const MenuBawah = () => {
           tabBarLabel: 'Tentang',
           tabBarIcon: ({ color, focused }) => (
             <IkonF 
-              name="user-alt" 
+              name="exclamation-circle" 
               color={focused ? biru : hitam} 
               size={20} 
             />
@@ -109,7 +108,6 @@ const App = () => {
         <Stack.Screen name='Tab' component={MenuBawah} options={{headerShown: false}}/>
         <Stack.Screen name='DetailPelsus' component={DetailPelsus} options={{headerShown: false}}/>
         <Stack.Screen name='LihatSemua' component={LihatSemua} options={{headerShown: false}}/>
-        <Stack.Screen name='DetailBlog' component={DetailBlog} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
