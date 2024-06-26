@@ -5,32 +5,22 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 const LihatSemuaPelatihan = ({ navigation }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showSearchInput, setShowSearchInput] = useState(false);
-
-  // Fungsi untuk menampilkan atau menyembunyikan kolom pencarian
   const handleSearchPress = () => {
     setShowSearchInput(!showSearchInput); 
     setSearchQuery(''); 
   };
-
-  // Fungsi untuk menangani perubahan input pencarian
   const handleInputChange = (text) => {
     setSearchQuery(text);
   };
-
-  // Fungsi untuk menangani submit pencarian
   const handleSearchSubmit = () => {
     console.log('Pencarian: ', searchQuery);
   };
-
-  // Data pelatihan
   const trainings = [
     { image: { uri: 'https://drive.google.com/uc?id=1IyqMR16Mtd4kBFxFPL65qWQXV9Zkppy5' }, title: "CodePolitan", description: "CodePolitan adalah platform edukasi yang menyediakan pelatihan coding untuk semua tingkat kemampuan, mulai dari pemula hingga profesional. Dengan kurikulum yang komprehensif dan didukung oleh instruktur berpengalaman, CodePolitan menawarkan berbagai kursus yang mencakup dasar-dasar pemrograman, pengembangan web, hingga teknologi terbaru seperti kecerdasan buatan dan pembelajaran mesin. Peserta pelatihan juga memiliki akses ke komunitas online untuk berkolaborasi dan mendapatkan bantuan dari sesama pelajar dan mentor.", link: "https://www.codepolitan.com" },
     { image: { uri: 'https://drive.google.com/uc?id=1-nd4C7lEqi2-nNGrRGV8sS0Wp5b3rZuY' }, title: "Dicoding", description: "Dicoding adalah platform belajar pemrograman terkemuka di Indonesia yang menyediakan berbagai macam materi pembelajaran untuk developer dari semua tingkatan. Dicoding menawarkan kursus dengan pendekatan praktis yang dirancang oleh para ahli industri dan diakui secara global. Dari pengembangan aplikasi Android, pengembangan web, hingga teknologi cloud, Dicoding menyediakan sertifikasi yang diakui oleh perusahaan teknologi besar. Selain itu, Dicoding juga menyediakan proyek-proyek nyata untuk membantu peserta membangun portofolio profesional.", link: "https://www.dicoding.com" },
     { image: { uri: 'https://drive.google.com/uc?id=10McAo8LL-00xWZp13bSYXxyJOgknbsEU' }, title: "MySkill", description: "MySkill adalah platform pelatihan yang bertujuan untuk meningkatkan keterampilan profesional dalam berbagai bidang. Dengan berfokus pada pengembangan keterampilan yang dibutuhkan di dunia kerja, MySkill menawarkan kursus yang meliputi soft skills seperti kepemimpinan dan komunikasi, serta hard skills seperti analisis data dan manajemen proyek. Setiap kursus dirancang dengan metode pembelajaran interaktif yang memudahkan peserta untuk memahami dan mengaplikasikan ilmu yang dipelajari dalam pekerjaan mereka sehari-hari.", link: "https://www.myskill.id" },
     { image: { uri: 'https://drive.google.com/uc?id=1AA7opwPYkSLlw4O9Gxg7ZwcMv34r0KPn' }, title: "SkilVul", description: "SkilVul adalah platform pelatihan online yang menyediakan berbagai kursus untuk mengembangkan keterampilan di bidang teknologi dan digital. Dengan fokus pada pembelajaran praktis dan proyek nyata, SkilVul menawarkan kursus dalam berbagai topik seperti desain grafis, pengembangan web, pemrograman, dan pemasaran digital. Platform ini dirancang untuk membantu peserta menjadi profesional yang siap kerja dengan keterampilan yang relevan dan up-to-date. SkilVul juga menawarkan program mentorship dan dukungan karir untuk membantu peserta mencapai tujuan profesional mereka.", link: "https://www.skilvul.com" },
   ];
-
-  // Fungsi untuk membuka link eksternal dalam browser
   const openLink = (url) => {
     Linking.openURL(url).catch((err) => console.error('Error opening link:', err));
   };
@@ -45,7 +35,6 @@ const LihatSemuaPelatihan = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity style={styles.searchButton} onPress={handleSearchPress}>
         <Icon name="search" size={24} color="white" />
-        {/* Fungsi Pencarian ini Belum Berfungsi Bingung Belum Paham */}
       </TouchableOpacity>
       {showSearchInput && (
         <View style={styles.searchContainer}>
@@ -62,7 +51,7 @@ const LihatSemuaPelatihan = ({ navigation }) => {
       <ScrollView contentContainerStyle={styles.contentContainer}>
         {trainings.map((training, index) => (
           <TouchableOpacity key={index} style={styles.trainingItem} onPress={() => openLink(training.link)}>
-            <Image source={training.image} style={styles.image} resizeMode="cover" />
+            <Image source={training.image} style={styles.image} resizeMode="contain" />
             <View style={styles.textContainer}>
               <Text style={styles.trainingName}>{training.title}</Text>
               <Text style={styles.trainingDescription}>{training.description}</Text>

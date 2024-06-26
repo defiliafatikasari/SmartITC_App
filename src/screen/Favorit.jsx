@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import { biru, hitam, border } from "../constants/warna";
+import { biru, hitam } from "../constants/warna";
 import IkonF from 'react-native-vector-icons/FontAwesome';
 
 const Favorit = () => {
@@ -21,15 +21,11 @@ const Favorit = () => {
     { id: 8, image: { uri: 'https://drive.google.com/uc?id=1R_YTeO9WYwkUi1UQe3iRZ8IXBGa9oG41' }, title: "Course-Net", description: "Course-Net adalah platform kursus online yang menawarkan berbagai program pelatihan untuk mengembangkan keterampilan dalam berbagai bidang.", link: "https://www.course-net.com" },
   ];
 
-  // Dummy favorited items (you should use your own state or storage mechanism)
-  const favoritedItems = training.slice(0, 2).concat(course.slice(0, 2)); // Example: showing first 2 items from each category
-
+  const favoritedItems = training.slice(0, 2).concat(course.slice(0, 2));
   const navigateToDetail = (item) => {
     navigation.navigate('DetailPelsus', { detail: item });
   };
-
   const removeFromFavorites = (item) => {
-    // Implement logic to remove from favorites (use state or storage mechanism)
   };
 
   return (

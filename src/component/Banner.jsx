@@ -17,7 +17,7 @@ export default function Banner() {
         scrollRef.current.scrollTo({ x: nextPage * SCREEN_WIDTH, animated: true });
         return nextPage;
       });
-    }, 3000); // Mengganti slide setiap 3 detik
+    }, 3000); 
 
     return () => clearInterval(interval);
   }, []);

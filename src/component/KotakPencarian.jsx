@@ -1,7 +1,7 @@
 import { View, TextInput, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import IkonM from 'react-native-vector-icons/MaterialIcons';
-import { hitam, abumuda, biru } from '../constants/warna';
+import { hitam, biru } from '../constants/warna';
 
 const KotakPencarian = () => {
   const [text, setText] = useState('');
@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-
   searchStyle: {
     backgroundColor: biru,
     paddingHorizontal: 16,

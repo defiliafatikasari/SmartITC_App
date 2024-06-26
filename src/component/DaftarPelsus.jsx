@@ -1,8 +1,6 @@
 import React from "react";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { hitam, biru, border } from "../constants/warna";
-import LihatSemuaPelatihan from "../screen/LihatSemuaPelatihan";
-import LihatSemuaKursus from "../screen/LihatSemuaKursus";
 
 const training = [
   { image: { uri: 'https://drive.google.com/uc?id=1IyqMR16Mtd4kBFxFPL65qWQXV9Zkppy5' }, title: "CodePolitan", description: "CodePolitan adalah platform edukasi yang menyediakan pelatihan coding untuk semua tingkat kemampuan, mulai dari pemula hingga profesional. Dengan kurikulum yang komprehensif dan didukung oleh instruktur berpengalaman, CodePolitan menawarkan berbagai kursus yang mencakup dasar-dasar pemrograman, pengembangan web, hingga teknologi terbaru seperti kecerdasan buatan dan pembelajaran mesin. Peserta pelatihan juga memiliki akses ke komunitas online untuk berkolaborasi dan mendapatkan bantuan dari sesama pelajar dan mentor.", link: "https://www.codepolitan.com" },
@@ -19,13 +17,10 @@ const course = [
 ];
 
 export default function DaftarPelsus({ title, navigation }) {
-
   const data = title === 'Training (Pelatihan)' ? training : course;
-  
   const navigateToDetail = (detail) => {
     navigation.navigate('DetailPelsus', { detail });
   }
-
   const navigateToSeeAll = () => {
     const screenName = title === 'Training (Pelatihan)' ? 'LihatSemuaPelatihan' : 'LihatSemuaKursus';
     navigation.navigate(screenName, { data }); 

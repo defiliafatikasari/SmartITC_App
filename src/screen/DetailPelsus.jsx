@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, Linking, Dimensions, ScrollView } from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import { biru, hitam, putih, abuGelap } from "../constants/warna";
+import { biru, hitam, border, abu } from "../constants/warna";
 import IkonM from 'react-native-vector-icons/MaterialIcons';
 import IkonF from 'react-native-vector-icons/FontAwesome';
 
@@ -11,11 +11,9 @@ export default function DetailPelsus({ route }) {
   const { detail } = route.params;
   const navigation = useNavigation();
   const [isFavorited, setIsFavorited] = useState(false);
-
   const openLink = (url) => {
     Linking.openURL(url);
   };
-
   const toggleFavorite = () => {
     setIsFavorited(!isFavorited);
   };
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     backgroundColor: '#f8f8f8',
     borderBottomWidth: 1,
-    borderBottomColor: abuGelap,
+    borderBottomColor: abu,
   },
   backButton: {
     flexDirection: 'row',
@@ -85,7 +83,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingTop: 20,
     paddingBottom: 40,
-    backgroundColor: putih,
+    backgroundColor: border,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     marginTop: -30,

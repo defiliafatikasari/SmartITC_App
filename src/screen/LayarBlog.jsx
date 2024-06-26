@@ -9,11 +9,9 @@ const blogs = [
 ];
 
 export default function LayarBlog() {
-
   const openBlogLink = (link) => {
     Linking.openURL(link);
   };
-
   const openMainBlogLink = () => {
     Linking.openURL("https://itinshights.blogspot.com/");
   };

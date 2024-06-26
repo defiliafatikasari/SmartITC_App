@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Linking } from 'react-native';
-import { hitam, biru, abumuda } from '../constants/warna';
+import { hitam, biru } from '../constants/warna';
 import IkonF from 'react-native-vector-icons/FontAwesome5';
 import IkonMc from 'react-native-vector-icons/MaterialCommunityIcons';
 import IkonM from 'react-native-vector-icons/MaterialIcons';

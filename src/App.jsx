@@ -24,7 +24,6 @@ import DetailPelsus from './screen/DetailPelsus';
 import Favorit from './screen/Favorit';
 import LihatSemuaPelatihan from './screen/LihatSemuaPelatihan';
 import LihatSemuaKursus from './screen/LihatSemuaKursus';
-// Pelsus (Pelatihan Kursus)
 
 const Stack = createNativeStackNavigator();
 const Tabs = createBottomTabNavigator();

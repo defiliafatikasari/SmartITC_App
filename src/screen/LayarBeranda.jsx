@@ -4,7 +4,7 @@ import KotakPencarian from '../component/KotakPencarian';
 import GmbrLogo from '../assets/gambar/LogoSitc.png';
 import Banner from '../component/Banner';
 import DaftarPelsus from '../component/DaftarPelsus';
-import { biru, hitam } from '../constants/warna';
+import { hitam } from '../constants/warna';
 
 const LayarBeranda = ({ navigation }) => {
   return (
@@ -12,8 +12,7 @@ const LayarBeranda = ({ navigation }) => {
       <Image source={GmbrLogo} style={styles.imglogo}></Image>
       <Text style={styles.text}>Smart Information Training And Courses</Text>
       <KotakPencarian />
-      {/* Fungsi Pencarian ini Belum Berfungsi Bingung Belum Paham */}
-      
+
       <View style={{height: 15}}/>
       <Banner />
       <View style={{height: 20}}/>
