@@ -45,6 +45,7 @@ const LihatSemuaPelatihan = ({ navigation }) => {
       </TouchableOpacity>
       <TouchableOpacity style={styles.searchButton} onPress={handleSearchPress}>
         <Icon name="search" size={24} color="white" />
+        {/* Fungsi Pencarian ini Belum Berfungsi Bingung Belum Paham */}
       </TouchableOpacity>
       {showSearchInput && (
         <View style={styles.searchContainer}>

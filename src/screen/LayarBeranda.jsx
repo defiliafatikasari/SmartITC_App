@@ -11,11 +11,11 @@ const LayarBeranda = ({ navigation }) => {
     <View style={styles.container}>
       <Image source={GmbrLogo} style={styles.imglogo}></Image>
       <Text style={styles.text}>Smart Information Training And Courses</Text>
-      
       <KotakPencarian />
+      {/* Fungsi Pencarian ini Belum Berfungsi Bingung Belum Paham */}
+      
       <View style={{height: 15}}/>
       <Banner />
-
       <View style={{height: 20}}/>
       <DaftarPelsus title={'Training (Pelatihan)'} navigation={navigation} />
       <DaftarPelsus title={'Courses (Kursus)'}navigation={navigation}/>
