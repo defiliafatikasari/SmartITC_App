@@ -21,8 +21,9 @@ import { biru, hitam } from './constants/warna';
 import LayarBlog from './screen/LayarBlog';
 import LayarKontak from './screen/LayarKontak';
 import DetailPelsus from './screen/DetailPelsus';
-import LihatSemua from './screen/LihatSemua';
 import Favorit from './screen/Favorit';
+import LihatSemuaPelatihan from './screen/LihatSemuaPelatihan';
+import LihatSemuaKursus from './screen/LihatSemuaKursus';
 // Pelsus (Pelatihan Kursus)
 
 const Stack = createNativeStackNavigator();
@@ -123,7 +124,8 @@ const App = () => {
         <Stack.Screen name='LayarAwal' component={LayarAwal} options={{headerShown: false}}/>
         <Stack.Screen name='Tab' component={MenuBawah} options={{headerShown: false}}/>
         <Stack.Screen name='DetailPelsus' component={DetailPelsus} options={{headerShown: false}}/>
-        <Stack.Screen name='LihatSemua' component={LihatSemua} options={{headerShown: false}}/>
+        <Stack.Screen name='LihatSemuaPelatihan' component={LihatSemuaPelatihan} options={{headerShown: false}}/>
+        <Stack.Screen name='LihatSemuaKursus' component={LihatSemuaKursus} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

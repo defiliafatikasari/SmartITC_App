@@ -1,20 +1,20 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 
-const LihatSemua = () => {
+const LihatSemuaKursus = () => {
   return (
     <ImageBackground
       source={require('../assets/gambar/bg.jpg')}
       style={styles.container}
     >
       <View style={styles.overlay}>
-        <Text style={styles.text}>Isi Nanti Belum ada Konsep</Text>
+        <Text style={styles.text}>Isi Nanti Belum ada Konsep Kursus</Text>
       </View>
     </ImageBackground>
   );
 }
 
-export default LihatSemua;
+export default LihatSemuaKursus;
 
 const styles = StyleSheet.create({
   container: {
