@@ -11,9 +11,15 @@ const LayarKontak = () => {
   const [pesan, setPesan] = useState('');
 
   const kirimPesan = () => {
-    console.log('Nama:', nama);
-    console.log('Email:', email);
-    console.log('Pesan:', pesan);
+    const subject = `Pesan dari ${nama}`; // Subjek email
+    const body = pesan; // Isi email
+    const emailAddress = 'defiliatika@gmail.com'; // Alamat email tujuan
+
+    const url = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    Linking.openURL(url);
+    
+    // Bersihkan form setelah mengirim pesan
     setNama('');
     setEmail('');
     setPesan('');
