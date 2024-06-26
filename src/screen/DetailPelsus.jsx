@@ -35,7 +35,7 @@ export default function DetailPelsus({ route }) {
           <Text style={styles.description}>{detail.description}</Text>
           {detail.link && (
             <TouchableOpacity onPress={() => openLink(detail.link)} style={styles.linkButton}>
-              <Text style={styles.linkText}>Kunjungi Pelatihan</Text>
+              <Text style={styles.linkText}>Kunjungi Pelatihan/Kursus</Text>
               <IkonM name="open-in-new" size={16} color="white" />
             </TouchableOpacity>
           )}
