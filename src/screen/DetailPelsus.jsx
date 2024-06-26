@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity, Linking, Dimensions } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity, Linking, Dimensions, ScrollView } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { biru, hitam, putih, abuGelap } from "../constants/warna";
 import IkonM from 'react-native-vector-icons/MaterialIcons';
@@ -30,17 +30,19 @@ export default function DetailPelsus({ route }) {
           <IkonF name="heart" size={24} color={isFavorited ? biru : hitam} />
         </TouchableOpacity>
       </View>
-      <Image source={detail.image} style={styles.image} />
-      <View style={styles.content}>
-        <Text style={styles.title}>{detail.title}</Text>
-        <Text style={styles.description}>{detail.description}</Text>
-        {detail.link && (
-          <TouchableOpacity onPress={() => openLink(detail.link)} style={styles.linkButton}>
-            <Text style={styles.linkText}>Kunjungi Pelatihan</Text>
-            <IkonM name="open-in-new" size={16} color="white" />
-          </TouchableOpacity>
-        )}
-      </View>
+      <ScrollView>
+        <Image source={detail.image} style={styles.image} resizeMode="contain" />
+        <View style={styles.content}>
+          <Text style={styles.title}>{detail.title}</Text>
+          <Text style={styles.description}>{detail.description}</Text>
+          {detail.link && (
+            <TouchableOpacity onPress={() => openLink(detail.link)} style={styles.linkButton}>
+              <Text style={styles.linkText}>Kunjungi Pelatihan</Text>
+              <IkonM name="open-in-new" size={16} color="white" />
+            </TouchableOpacity>
+          )}
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -73,11 +75,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
   },
   image: {
-    width: width - 48, // same padding as container
-    height: (width - 48) * 0.56, // maintain aspect ratio 16:9
-    resizeMode: 'contain',
+    width: width - 48, 
+    height: (width - 48) * 0.8, 
     marginBottom: 20,
-    alignSelf: 'center', // center image
+    alignSelf: 'center', 
+    borderRadius: 10, 
   },
   content: {
     paddingHorizontal: 24,
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   title: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: 'bold',
     color: hitam,
     marginBottom: 15,
@@ -116,6 +118,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     backgroundColor: biru,
     alignSelf: 'center',
+    marginTop: 20,
   },
   linkText: {
     fontSize: 16,
