@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Image, ScrollView, View, Dimensions, StyleSheet } from 'react-native';
 import { biru, abumuda } from '../constants/warna';
 import { BannerSitc, BannerSitc2, BannerSitc3, BannerSitc4, BannerSitc5 } from '../constants/gambar';
@@ -8,6 +8,19 @@ const { width: SCREEN_WIDTH } = Dimensions.get('screen');
 export default function Banner() {
   const pages = [BannerSitc, BannerSitc2, BannerSitc3, BannerSitc4, BannerSitc5];
   const [currentPage, setCurrentPage] = useState(0);
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPage((prevPage) => {
+        const nextPage = (prevPage + 1) % pages.length;
+        scrollRef.current.scrollTo({ x: nextPage * SCREEN_WIDTH, animated: true });
+        return nextPage;
+      });
+    }, 3000); // Mengganti slide setiap 3 detik
+
+    return () => clearInterval(interval);
+  }, []);
 
   const onScroll = (event) => {
     const slide = Math.ceil(event.nativeEvent.contentOffset.x / event.nativeEvent.layoutMeasurement.width);
@@ -19,6 +32,7 @@ export default function Banner() {
   return (
     <View style={{ position: 'relative', width: '100%' }}>
       <ScrollView
+        ref={scrollRef}
         scrollEventThrottle={16}
         horizontal={true}
         pagingEnabled
