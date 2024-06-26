@@ -3,8 +3,12 @@ import React, { useState } from 'react';
 import IkonM from 'react-native-vector-icons/MaterialIcons';
 import { hitam, biru } from '../constants/warna';
 
-const KotakPencarian = () => {
+const KotakPencarian = ({ onSearch }) => {
   const [text, setText] = useState('');
+
+  const handleSearch = () => {
+    onSearch(text);
+  };
 
   return (
     <View style={[styles.searchStyle, styles.flexRowCenter]}>
@@ -15,10 +19,12 @@ const KotakPencarian = () => {
         style={styles.input} 
         value={text}
         onChangeText={setText} 
+        onSubmitEditing={handleSearch} // Tambahkan ini untuk melakukan pencarian saat pengguna menekan tombol "Enter"
       />
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   flexRowCenter: {
