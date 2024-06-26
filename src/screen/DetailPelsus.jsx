@@ -1,33 +1,65 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { hitam } from '../constants/warna'
-import { useNavigation } from '@react-navigation/native'; 
-import IkonM from 'react-native-vector-icons/MaterialIcons'
+import React from "react";
+import { View, Text, Image, StyleSheet, TouchableOpacity, Linking } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import { biru, hitam } from "../constants/warna";
+import IkonM from 'react-native-vector-icons/MaterialIcons';
 
-const DetailPelsus = () => {
-  const navigation = useNavigation(); 
+export default function DetailPelsus({ route }) {
+  const { detail } = route.params;
+  const navigation = useNavigation();
+
+  const openLink = (url) => {
+    Linking.openURL(url);
+  };
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate('LayarBeranda')} style={styles.backButton}>
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
         <IkonM name="chevron-left" size={24} color={hitam} />
       </TouchableOpacity>
-      <View style={{height: 20}}/>
-      <Text style={{color: hitam}}>isi Nanti Dulu</Text>
+      <Image source={detail.image} style={styles.image} />
+      <Text style={styles.title}>{detail.title}</Text>
+      <Text style={styles.description}>{detail.description}</Text>
+      {detail.link && (
+        <TouchableOpacity onPress={() => openLink(detail.link)}>
+          <Text style={styles.link}>Kunjungi Pelatihan</Text>
+        </TouchableOpacity>
+      )}
     </View>
-  )
+  );
 }
-
-export default DetailPelsus;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 20,
+    padding: 24,
+    backgroundColor: 'white',
   },
   backButton: {
-    position: 'absolute',
-    top: 20,
-    left: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  image: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'contain',
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: hitam,
+    marginBottom: 10,
+  },
+  description: {
+    fontSize: 16,
+    color: hitam,
+    marginBottom: 20,
+  },
+  link: {
+    fontSize: 16,
+    color: biru,
+    textDecorationLine: 'underline',
   },
 });
