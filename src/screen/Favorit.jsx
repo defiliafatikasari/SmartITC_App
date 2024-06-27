@@ -68,18 +68,27 @@ const Favorit = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#f0f0f0', 
     paddingHorizontal: 20,
     paddingTop: 20,
   },
   section: {
     marginBottom: 20,
+    backgroundColor: 'white', 
+    borderRadius: 15, 
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 3, 
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     color: hitam,
     marginBottom: 10,
+    paddingHorizontal: 15,
+    paddingTop: 10,
   },
   item: {
     flexDirection: 'row',
@@ -89,11 +98,13 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
+    marginHorizontal: 15,
   },
   image: {
     width: 80,
     height: 80,
     marginRight: 15,
+    borderRadius: 8, 
   },
   textContainer: {
     flex: 1,
@@ -102,9 +113,11 @@ const styles = StyleSheet.create({
     color: hitam,
     fontWeight: 'bold',
     marginBottom: 5,
+    fontSize: 16,
   },
   description: {
     color: hitam,
+    fontSize: 14,
   },
   removeButton: {
     backgroundColor: 'transparent',
