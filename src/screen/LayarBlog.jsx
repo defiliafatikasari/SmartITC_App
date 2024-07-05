@@ -3,9 +3,9 @@ import { Text, ScrollView, StyleSheet, TouchableOpacity, Image, Linking, View } 
 import { hitam, biru } from "../constants/warna";
 
 const blogs = [
-  { id: 1, title: "Ringkasan Seputar Dunia IT", date: "July 2023", link: "https://itinshights.blogspot.com/2023/07/ringkasan-dunia-it-body-font-family.html", image: require('../assets/gambar/people.png') },
-  { id: 2, title: "Jurusan-Jurusan Di Bidang IT", date: "July 2023", link: "https://itinshights.blogspot.com/2023/07/jurusan-jurusan-di-bidang-it.html", image: require('../assets/gambar/suitcase.png') },
-  { id: 3, title: "Meniti Sukses di Dunia IT: Pentingnya Mendapatkan Sertifikasi bagi Programmer", date: "January 2024", link: "https://itinshights.blogspot.com/2024/01/kenapa-pentingnya-mendapatkan.html", image: require('../assets/gambar/trophy.png') },
+  { id: 1, title: "Ringkasan Seputar Dunia IT", date: "July 2023", link: "https://itinshights.blogspot.com/2023/07/ringkasan-dunia-it-body-font-family.html", image: { uri: 'https://drive.google.com/uc?export=view&id=1iYFBA1Va1dVXKCipRnOMX2wLcC1uBVng' } },
+  { id: 2, title: "Jurusan-Jurusan Di Bidang IT", date: "July 2023", link: "https://itinshights.blogspot.com/2023/07/jurusan-jurusan-di-bidang-it.html", image: { uri: 'https://drive.google.com/uc?export=view&id=1fv62enynohV1OJPBcjR71cIwJgEu4DHd' } },
+  { id: 3, title: "Meniti Sukses di Dunia IT: Pentingnya Mendapatkan Sertifikasi bagi Programmer", date: "January 2024", link: "https://itinshights.blogspot.com/2024/01/kenapa-pentingnya-mendapatkan.html", image: { uri: 'https://drive.google.com/uc?export=view&id=1zh232ezoE7XJ0wqPmeYqQlvEmOBd7YCO' } },
 ];
 
 export default function LayarBlog() {
@@ -28,7 +28,7 @@ export default function LayarBlog() {
       />
 
       {blogs.map((blog) => (
-        <TouchableOpacity key={blog.id} style={styles.blogItem}>
+        <TouchableOpacity key={blog.id} style={styles.blogItem} onPress={() => openBlogLink(blog.link)}>
           <Image source={blog.image} style={styles.blogImage} resizeMode='contain' />
           <Text style={styles.blogTitle}>{blog.title}</Text>
           <Text style={styles.blogMeta}>{blog.date}</Text>
