@@ -1,25 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, TextInput, ScrollView, Image, Linking } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'; 
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { FavoriteContext } from '../component/FavoriteContext';
 
 const LihatSemuaKursus = ({ navigation }) => {
+  const { favorites, addFavorite, removeFavorite, isFavorite } = useContext(FavoriteContext);
   const [searchQuery, setSearchQuery] = useState('');
   const [showSearchInput, setShowSearchInput] = useState(false);
-  const [favoritedCourses, setFavoritedCourses] = useState([]);
-  
-  const handleSearchPress = () => {
-    setShowSearchInput(!showSearchInput); 
-    setSearchQuery(''); 
-  };
-  
-  const handleInputChange = (text) => {
-    setSearchQuery(text);
-  };
-  
-  const handleSearchSubmit = () => {
-    console.log('Pencarian: ', searchQuery);
-  };
-  
   const courses = [
     { image: { uri: 'https://drive.google.com/uc?id=1AOXIqN3X1ZZU_X8haC4tsvI2gAsvhMaQ' }, title: "Family Institute", description: "Family Institute adalah lembaga pelatihan yang berfokus pada pengembangan keterampilan penting untuk keluarga dan individu. Kami menawarkan kursus dalam tiga bidang utama: Digital Marketing, Aplikasi Perkantoran, dan Bahasa Inggris. Kursus Digital Marketing kami dirancang untuk membantu peserta memahami strategi pemasaran online, penggunaan media sosial, dan analitik web. Kursus Aplikasi Perkantoran meliputi pelatihan dalam penggunaan software perkantoran seperti Microsoft Office dan Google Workspace, yang sangat penting untuk meningkatkan produktivitas kerja.", link: "mailto:lkp.familyinstitute@gmail.com" },
     { image: { uri: 'https://drive.google.com/uc?id=1xSEynfN-_U_CaGRpB1rWDUrVFlaT5lVV' }, title: "DBS", description: "DBS Foundation menawarkan kursus yang berfokus pada topik-topik keuangan dan bisnis, dirancang untuk membantu individu dan perusahaan mengembangkan pengetahuan dan keterampilan dalam bidang ini. Dengan materi yang mencakup manajemen keuangan pribadi, investasi, analisis pasar, hingga strategi bisnis, DBS menyediakan sumber daya pendidikan yang komprehensif. Kursus ini diajarkan oleh para ahli industri dan menggunakan studi kasus nyata untuk memberikan wawasan praktis yang dapat diterapkan langsung di dunia nyata.", link: "https://www.dbs.com" },
@@ -28,21 +15,16 @@ const LihatSemuaKursus = ({ navigation }) => {
     { image: { uri: 'https://drive.google.com/uc?id=1qbUuycksmIuEEkUZuQ-TFyF1v6CfTWBb' }, title: "SkilAcademy", description: "SkilAcademy adalah platform kursus online yang menyediakan berbagai program pelatihan untuk meningkatkan keterampilan dalam berbagai bidang. Dari pengembangan web, data science, hingga kecerdasan buatan, SkilAcademy menawarkan kursus yang didesain oleh para ahli industri untuk memastikan kesesuaian dengan kebutuhan pasar kerja saat ini. Dengan metode pembelajaran yang fleksibel dan akses ke materi pelatihan yang berkualitas, SkilAcademy membantu peserta meraih tujuan pembelajaran mereka dengan efektif.", link: "https://skillacademy.com/" },
     { image: { uri: 'https://drive.google.com/uc?id=1jcgY4IEPdDcTGIieQz4-QeL4wKVIEkpK' }, title: "Udemy", description: "Udemy adalah salah satu platform kursus online terbesar yang menawarkan ribuan kursus dalam berbagai bidang, mulai dari pengembangan perangkat lunak, bisnis, hingga seni dan desain. Dengan pendekatan belajar mandiri dan akses ke instruktur berpengalaman di seluruh dunia, Udemy memungkinkan peserta untuk belajar sesuai dengan kecepatan mereka sendiri. Platform ini juga menyediakan kesempatan untuk berinteraksi dengan komunitas pembelajaran online dan membangun keterampilan yang relevan dengan kebutuhan industri saat ini.", link: "https://www.udemy.com/id/" },
   ];
-  
   const openLink = (url) => {
     Linking.openURL(url).catch((err) => console.error('Error opening link:', err));
   };
-
   const handleFavoritePress = (course) => {
-    if (favoritedCourses.some(favorite => favorite.title === course.title)) {
-      const updatedFavorites = favoritedCourses.filter(favorite => favorite.title !== course.title);
-      setFavoritedCourses(updatedFavorites);
+    if (isFavorite(course)) {
+      removeFavorite(course);
     } else {
-      const updatedFavorites = [...favoritedCourses, course];
-      setFavoritedCourses(updatedFavorites);
+      addFavorite(course);
     }
   };
-
   const filteredCourses = courses.filter(course =>
     course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     course.description.toLowerCase().includes(searchQuery.toLowerCase())
@@ -56,7 +38,7 @@ const LihatSemuaKursus = ({ navigation }) => {
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Icon name="chevron-left" size={24} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.searchButton} onPress={handleSearchPress}>
+      <TouchableOpacity style={styles.searchButton} onPress={() => setShowSearchInput(!showSearchInput)}>
         <Icon name="search" size={24} color="white" />
       </TouchableOpacity>
       {showSearchInput && (
@@ -65,9 +47,9 @@ const LihatSemuaKursus = ({ navigation }) => {
             style={styles.input}
             placeholder="Cari..."
             placeholderTextColor="white"
-            onChangeText={handleInputChange}
-            onSubmitEditing={handleSearchSubmit}
-            maxLength={30} 
+            onChangeText={setSearchQuery}
+            onSubmitEditing={() => console.log('Pencarian:', searchQuery)}
+            maxLength={30}
           />
         </View>
       )}
@@ -79,8 +61,11 @@ const LihatSemuaKursus = ({ navigation }) => {
               <Text style={styles.courseName}>{course.title}</Text>
               <Text style={styles.courseDescription}>{course.description}</Text>
             </View>
-            <TouchableOpacity style={styles.favoriteIcon} onPress={() => handleFavoritePress(course)}>
-              <Icon name={favoritedCourses.some(favorite => favorite.title === course.title) ? 'heart' : 'heart-o'} size={20} color="white" />
+            <TouchableOpacity 
+              style={styles.favoriteIcon} 
+              onPress={() => handleFavoritePress(course)}
+            >
+              <Icon name={isFavorite(course) ? 'heart' : 'heart-o'} size={20} color="white" />
             </TouchableOpacity>
           </TouchableOpacity>
         ))}
@@ -130,7 +115,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   contentContainer: {
-    paddingTop: 80, 
+    paddingTop: 80,
     paddingHorizontal: 20,
   },
   courseItem: {
@@ -139,7 +124,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 5,
     flexDirection: 'row',
-    position: 'relative', 
+    position: 'relative',
   },
   image: {
     width: 80,
@@ -151,13 +136,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   courseName: {
-    color: 'white',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
+    color: 'white',
   },
   courseDescription: {
+    fontSize: 12,
     color: 'white',
-    fontSize: 14,
   },
   favoriteIcon: {
     position: 'absolute',

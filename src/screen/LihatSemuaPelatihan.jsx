@@ -1,25 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, TextInput, ScrollView, Image, Linking } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'; 
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { FavoriteContext } from '../component/FavoriteContext';
 
 const LihatSemuaPelatihan = ({ navigation }) => {
+  const { favorites, addFavorite, removeFavorite, isFavorite } = useContext(FavoriteContext);
   const [searchQuery, setSearchQuery] = useState('');
   const [showSearchInput, setShowSearchInput] = useState(false);
-  const [favoritedTrainings, setFavoritedTrainings] = useState([]);
-
-  const handleSearchPress = () => {
-    setShowSearchInput(!showSearchInput); 
-    setSearchQuery(''); 
-  };
-
-  const handleInputChange = (text) => {
-    setSearchQuery(text);
-  };
-
-  const handleSearchSubmit = () => {
-    console.log('Pencarian: ', searchQuery);
-  };
-
   const trainings = [
     { image: { uri: 'https://drive.google.com/uc?id=1IyqMR16Mtd4kBFxFPL65qWQXV9Zkppy5' }, title: "CodePolitan", description: "CodePolitan adalah platform edukasi yang menyediakan pelatihan coding untuk semua tingkat kemampuan, mulai dari pemula hingga profesional. Dengan kurikulum yang komprehensif dan didukung oleh instruktur berpengalaman, CodePolitan menawarkan berbagai kursus yang mencakup dasar-dasar pemrograman, pengembangan web, hingga teknologi terbaru seperti kecerdasan buatan dan pembelajaran mesin. Peserta pelatihan juga memiliki akses ke komunitas online untuk berkolaborasi dan mendapatkan bantuan dari sesama pelajar dan mentor.", link: "https://www.codepolitan.com" },
     { image: { uri: 'https://drive.google.com/uc?id=1-nd4C7lEqi2-nNGrRGV8sS0Wp5b3rZuY' }, title: "Dicoding", description: "Dicoding adalah platform belajar pemrograman terkemuka di Indonesia yang menyediakan berbagai macam materi pembelajaran untuk developer dari semua tingkatan. Dicoding menawarkan kursus dengan pendekatan praktis yang dirancang oleh para ahli industri dan diakui secara global. Dari pengembangan aplikasi Android, pengembangan web, hingga teknologi cloud, Dicoding menyediakan sertifikasi yang diakui oleh perusahaan teknologi besar. Selain itu, Dicoding juga menyediakan proyek-proyek nyata untuk membantu peserta membangun portofolio profesional.", link: "https://www.dicoding.com" },
@@ -28,21 +15,16 @@ const LihatSemuaPelatihan = ({ navigation }) => {
     { image: { uri: 'https://drive.google.com/uc?id=1SFcZKB3FnpWgO3NEc-7-wXbVbGpHunEZ' }, title: "Yes.co.id", description: "Yes.co.id adalah platform online yang menyediakan berbagai pelatihan untuk pengembangan keterampilan di berbagai bidang. Dengan fokus pada pembelajaran praktis dan proyek nyata, Yes.co.id menawarkan pelatihan dalam berbagai topik seperti manajemen bisnis, pengembangan personal, dan keterampilan teknis. Platform ini didukung oleh instruktur yang berpengalaman dan dirancang untuk membantu peserta mencapai tujuan karir mereka.", link: "https://www.yec.co.id" },
     { image: { uri: 'https://drive.google.com/uc?id=1Uz_KuJAR7TFpslUq4S2yMtBymKA5YqRV' }, title: "Karier.mu", description: "Karier.mu adalah platform online yang menyediakan berbagai pelatihan untuk mengembangkan keterampilan di bidang karier dan profesional. Dengan fokus pada pembelajaran yang praktis dan aplikatif, Karier.mu menawarkan pelatihan dalam berbagai topik seperti manajemen sumber daya manusia, pengembangan keterampilan interpersonal, dan kewirausahaan. Platform ini dirancang untuk membantu peserta mempersiapkan diri dalam menghadapi tantangan dan persaingan di dunia kerja modern.", link: "https://www.karier.mu" },
   ];
-
   const openLink = (url) => {
     Linking.openURL(url).catch((err) => console.error('Error opening link:', err));
   };
-
   const handleFavoritePress = (training) => {
-    if (favoritedTrainings.some(favorite => favorite.title === training.title)) {
-      const updatedFavorites = favoritedTrainings.filter(favorite => favorite.title !== training.title);
-      setFavoritedTrainings(updatedFavorites);
+    if (isFavorite(training)) {
+      removeFavorite(training);
     } else {
-      const updatedFavorites = [...favoritedTrainings, training];
-      setFavoritedTrainings(updatedFavorites);
+      addFavorite(training);
     }
   };
-
   const filteredTrainings = trainings.filter(training =>
     training.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     training.description.toLowerCase().includes(searchQuery.toLowerCase())
@@ -56,7 +38,7 @@ const LihatSemuaPelatihan = ({ navigation }) => {
       <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
         <Icon name="chevron-left" size={24} color="white" />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.searchButton} onPress={handleSearchPress}>
+      <TouchableOpacity style={styles.searchButton} onPress={() => setShowSearchInput(!showSearchInput)}>
         <Icon name="search" size={24} color="white" />
       </TouchableOpacity>
       {showSearchInput && (
@@ -65,9 +47,9 @@ const LihatSemuaPelatihan = ({ navigation }) => {
             style={styles.input}
             placeholder="Cari..."
             placeholderTextColor="white"
-            onChangeText={handleInputChange}
-            onSubmitEditing={handleSearchSubmit}
-            maxLength={30} 
+            onChangeText={setSearchQuery}
+            onSubmitEditing={() => console.log('Pencarian:', searchQuery)}
+            maxLength={30}
           />
         </View>
       )}
@@ -79,8 +61,11 @@ const LihatSemuaPelatihan = ({ navigation }) => {
               <Text style={styles.trainingName}>{training.title}</Text>
               <Text style={styles.trainingDescription}>{training.description}</Text>
             </View>
-            <TouchableOpacity style={styles.favoriteIcon} onPress={() => handleFavoritePress(training)}>
-              <Icon name={favoritedTrainings.some(favorite => favorite.title === training.title) ? 'heart' : 'heart-o'} size={20} color="white" />
+            <TouchableOpacity 
+              style={styles.favoriteIcon} 
+              onPress={() => handleFavoritePress(training)}
+            >
+              <Icon name={isFavorite(training) ? 'heart' : 'heart-o'} size={20} color="white" />
             </TouchableOpacity>
           </TouchableOpacity>
         ))}
@@ -130,7 +115,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   contentContainer: {
-    paddingTop: 80, 
+    paddingTop: 80,
     paddingHorizontal: 20,
   },
   trainingItem: {
@@ -139,7 +124,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 5,
     flexDirection: 'row',
-    position: 'relative', 
+    position: 'relative',
   },
   image: {
     width: 80,
@@ -151,13 +136,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   trainingName: {
-    color: 'white',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
+    color: 'white',
   },
   trainingDescription: {
-    color: 'white',
     fontSize: 14,
+    color: 'white',
   },
   favoriteIcon: {
     position: 'absolute',

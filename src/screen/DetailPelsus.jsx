@@ -1,21 +1,30 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, Linking, Dimensions, ScrollView } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { biru, hitam, border, abu } from "../constants/warna";
 import IkonM from 'react-native-vector-icons/MaterialIcons';
 import IkonF from 'react-native-vector-icons/FontAwesome';
+import { FavoriteContext } from '../component/FavoriteContext';
 
 const { width } = Dimensions.get('window');
 
 export default function DetailPelsus({ route }) {
   const { detail } = route.params;
   const navigation = useNavigation();
-  const [isFavorited, setIsFavorited] = useState(false);
+  const { favorites, addFavorite, removeFavorite, isFavorite } = useContext(FavoriteContext);
+  const [isFavorited, setIsFavorited] = useState(isFavorite(detail));
+  useEffect(() => {
+    setIsFavorited(isFavorite(detail));
+  }, [favorites, detail, isFavorite]);
   const openLink = (url) => {
     Linking.openURL(url);
   };
   const toggleFavorite = () => {
-    setIsFavorited(!isFavorited);
+    if (isFavorited) {
+      removeFavorite(detail);
+    } else {
+      addFavorite(detail);
+    }
   };
 
   return (
@@ -25,7 +34,7 @@ export default function DetailPelsus({ route }) {
           <IkonM name="chevron-left" size={30} color={hitam} />
         </TouchableOpacity>
         <TouchableOpacity onPress={toggleFavorite} style={styles.favoriteButton}>
-          <IkonF name="heart" size={24} color={isFavorited ? biru : hitam} />
+          <IkonF name={isFavorited ? "heart" : "heart-o"} size={24} color={isFavorited ? biru : hitam} />
         </TouchableOpacity>
       </View>
       <ScrollView>
@@ -88,39 +97,33 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     marginTop: -30,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 10,
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.3,
+    shadowRadius: 20,
   },
   title: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
     color: hitam,
-    marginBottom: 15,
-    textAlign: 'center',
+    marginBottom: 20,
   },
   description: {
-    fontSize: 18,
+    fontSize: 16,
     color: hitam,
+    marginBottom: 20,
     lineHeight: 24,
-    marginBottom: 25,
-    textAlign: 'center',
   },
   linkButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 25,
     backgroundColor: biru,
-    alignSelf: 'center',
-    marginTop: 20,
+    paddingVertical: 10,
+    borderRadius: 50,
   },
   linkText: {
-    fontSize: 16,
     color: 'white',
-    marginRight: 8,
+    fontSize: 16,
+    marginRight: 10,
   },
 });

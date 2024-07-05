@@ -8,9 +8,8 @@ import { hitam } from '../constants/warna';
 
 const LayarBeranda = ({ navigation }) => {
   const [searchText, setSearchText] = useState('');
-
   const handleSearch = (text) => {
-    setSearchText(text.toLowerCase()); // Mengubah teks pencarian menjadi huruf kecil untuk pencarian yang tidak bersifat case sensitive
+    setSearchText(text.toLowerCase()); 
   };
 
   return (

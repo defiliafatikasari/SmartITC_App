@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -12,7 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import IkonM from 'react-native-vector-icons/MaterialIcons';
 import IkonF from 'react-native-vector-icons/FontAwesome5';
 
-
+import { FavoriteProvider } from './component/FavoriteContext'; 
 import LayarSplash from './screen/LayarSplash';
 import LayarAwal from './screen/LayarAwal';
 import LayarBeranda from './screen/LayarBeranda';
@@ -117,16 +110,18 @@ const MenuBawah = () => {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name='LayarSplash' component={LayarSplash} options={{headerShown: false}} />
-        <Stack.Screen name='LayarAwal' component={LayarAwal} options={{headerShown: false}}/>
-        <Stack.Screen name='Tab' component={MenuBawah} options={{headerShown: false}}/>
-        <Stack.Screen name='DetailPelsus' component={DetailPelsus} options={{headerShown: false}}/>
-        <Stack.Screen name='LihatSemuaPelatihan' component={LihatSemuaPelatihan} options={{headerShown: false}}/>
-        <Stack.Screen name='LihatSemuaKursus' component={LihatSemuaKursus} options={{headerShown: false}}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <FavoriteProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name='LayarSplash' component={LayarSplash} options={{headerShown: false}} />
+          <Stack.Screen name='LayarAwal' component={LayarAwal} options={{headerShown: false}}/>
+          <Stack.Screen name='Tab' component={MenuBawah} options={{headerShown: false}}/>
+          <Stack.Screen name='DetailPelsus' component={DetailPelsus} options={{headerShown: false}}/>
+          <Stack.Screen name='LihatSemuaPelatihan' component={LihatSemuaPelatihan} options={{headerShown: false}}/>
+          <Stack.Screen name='LihatSemuaKursus' component={LihatSemuaKursus} options={{headerShown: false}}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </FavoriteProvider>
   );
 };
 
