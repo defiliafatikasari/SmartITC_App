@@ -9,22 +9,16 @@ const LayarKontak = () => {
   const [nama, setNama] = useState('');
   const [email, setEmail] = useState('');
   const [pesan, setPesan] = useState('');
-
   const kirimPesan = () => {
-    const subject = `Pesan dari ${nama}`; // Subjek email
-    const body = pesan; // Isi email
-    const emailAddress = 'defiliatika@gmail.com'; // Alamat email tujuan
-
+    const subject = `Pesan dari ${nama}`; 
+    const body = pesan; 
+    const emailAddress = 'defiliatika@gmail.com'; 
     const url = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
     Linking.openURL(url);
-    
-    // Bersihkan form setelah mengirim pesan
     setNama('');
     setEmail('');
     setPesan('');
   };
-
   const handleLinkPress = (url) => {
     Linking.openURL(url);
   };

@@ -5,7 +5,6 @@ import { hitam, biru } from '../constants/warna';
 
 const KotakPencarian = ({ onSearch }) => {
   const [text, setText] = useState('');
-
   const handleSearch = () => {
     onSearch(text);
   };
@@ -19,12 +18,11 @@ const KotakPencarian = ({ onSearch }) => {
         style={styles.input} 
         value={text}
         onChangeText={setText} 
-        onSubmitEditing={handleSearch} // Tambahkan ini untuk melakukan pencarian saat pengguna menekan tombol "Enter"
+        onSubmitEditing={handleSearch} 
       />
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   flexRowCenter: {

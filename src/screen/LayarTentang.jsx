@@ -6,7 +6,6 @@ import GmbrLogo from '../assets/gambar/LogoSitc.png';
 const MediaPartner1 = { uri: "https://drive.google.com/uc?id=15jd8hYt2hUuSr1Y6oQ5ixo2gG8lH69F8" };
 const MediaPartner2 = { uri: "https://drive.google.com/uc?id=1gguQbzDV-B2N8JbPWHd2OvAA95FuYTko" };
 const MediaPartner3 = { uri: "https://drive.google.com/uc?id=1xSEynfN-_U_CaGRpB1rWDUrVFlaT5lVV" };
-
 const mediaPartners = [
   { name: "Universitas Islam Madura", link: "https://www.uim.ac.id/" },
   { name: "Dicoding", link: "https://www.dicoding.com/" },
